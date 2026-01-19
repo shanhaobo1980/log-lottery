@@ -322,6 +322,6 @@ export const useGlobalConfig = defineStore('global', {
     persist: {
         key: 'globalConfig',
         storage: localStorage,
-        paths: ['globalConfig'],
+        pick: ['globalConfig'],
     },
 })
