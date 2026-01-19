@@ -1,7 +1,7 @@
 // pinia
 import { createPinia } from 'pinia'
 // pinia持久化
-import piniaPluginPersist from 'pinia-plugin-persist'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import * as THREE from 'three'
 import { createApp } from 'vue'
 import VueDOMPurifyHTML from 'vue-dompurify-html'
@@ -47,7 +47,7 @@ import 'virtual:svg-icons-register'
 
 const app = createApp(App)
 const pinia = createPinia()
-pinia.use(piniaPluginPersist)
+pinia.use(piniaPluginPersistedstate)
 
 app.config.globalProperties.$THREE = THREE // 挂载到原型
 app.component('svg-icon', svgIcon)

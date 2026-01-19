@@ -33,7 +33,7 @@ export const usePrizeConfig = defineStore('prize', {
         }
     },
     getters: {
-    // 获取全部配置
+        // 获取全部配置
         getPrizeConfigAll(state) {
             return state.prizeConfig
         },
@@ -58,7 +58,7 @@ export const usePrizeConfig = defineStore('prize', {
 
     },
     actions: {
-    // 设置奖项
+        // 设置奖项
         setPrizeConfig(prizeList: IPrizeConfig[]) {
             this.prizeConfig.prizeList = prizeList
         },
@@ -165,13 +165,7 @@ export const usePrizeConfig = defineStore('prize', {
         },
     },
     persist: {
-        enabled: true,
-        strategies: [
-            {
-                // 如果要存储在localStorage中
-                storage: localStorage,
-                key: 'prizeConfig',
-            },
-        ],
+        key: 'prizeConfig',
+        storage: localStorage,
     },
 })
