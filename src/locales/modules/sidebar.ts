@@ -7,6 +7,7 @@ export const sidebarEn = {
     viewSetting: 'View Setting',
     imagesManagement: 'Images Management',
     musicManagement: 'Music Management',
+    functionSetting: 'Function Setting',
     operatingInstructions: 'Operating Instructions',
 }
 
@@ -19,6 +20,7 @@ export const sidebarZhCn = {
     viewSetting: '界面设置',
     imagesManagement: '图片管理',
     musicManagement: '音乐管理',
+    functionSetting: '功能设置',
     operatingInstructions: '操作说明',
 }
 

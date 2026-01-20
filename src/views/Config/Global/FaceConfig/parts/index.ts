@@ -1,4 +1,4 @@
-export { default as AbilitySetting } from './AbilitySetting.vue'
+export { default as FunctionSetting } from './FunctionSetting.vue'
 export { default as DataSetting } from './DataSetting.vue'
 export { default as LayoutSetting } from './LayoutSetting.vue'
 export { default as PatternSetting } from './PatternSetting.vue'

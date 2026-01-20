@@ -99,6 +99,15 @@ export const configRoutes = {
                         icon: 'music',
                     },
                 },
+                {
+                    path: '/log-lottery/config/global/function',
+                    name: 'FunctionConfig',
+                    component: () => import('@/views/Config/Global/FunctionConfig/index.vue'),
+                    meta: {
+                        title: i18n.global.t('sidebar.functionSetting'),
+                        icon: 'function',
+                    },
+                },
             ],
         },
         {

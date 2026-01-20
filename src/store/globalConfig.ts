@@ -17,7 +17,7 @@ export const useGlobalConfig = defineStore('global', {
                 theme: {
                     name: 'dracula',
                     detail: { primary: '#0f5fd3' },
-                    cardColor: '#ff79c6',
+                    cardColor: '#D4AF37',
                     cardWidth: 140,
                     cardHeight: 200,
                     textColor: '#00000000',
@@ -37,6 +37,7 @@ export const useGlobalConfig = defineStore('global', {
                 item: defaultMusicList[0] as IMusic,
                 paused: true,
             },
+            isTestMode: false,
         }
     },
     getters: {
@@ -134,6 +135,10 @@ export const useGlobalConfig = defineStore('global', {
         // 是否播放获奖音乐
         getWinMusic(state) {
             return state.globalConfig.winMusic
+        },
+        // 获取是否开启测试模式
+        getIsTestMode(state) {
+            return state.isTestMode
         },
     },
     actions: {
@@ -297,7 +302,7 @@ export const useGlobalConfig = defineStore('global', {
                 theme: {
                     name: 'dracula',
                     detail: { primary: '#0f5fd3' },
-                    cardColor: '#ff79c6',
+                    cardColor: '#D4AF37',
                     cardWidth: 140,
                     cardHeight: 200,
                     textColor: '#00000000',
@@ -317,6 +322,11 @@ export const useGlobalConfig = defineStore('global', {
                 item: defaultMusicList[0],
                 paused: true,
             }
+            this.isTestMode = false
+        },
+        // 设置测试模式
+        setIsTestMode(isTestMode: boolean) {
+            this.isTestMode = isTestMode
         },
     },
     persist: {

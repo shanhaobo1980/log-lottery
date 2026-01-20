@@ -37,6 +37,11 @@ html {
     overflow-y: hidden;
     overflow-x: hidden;
     font-family: var(--app-font-family);
+    background-image: url('@/assets/images/Background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 ul {

@@ -3,6 +3,7 @@ import { useElementSize } from '@vueuse/core'
 import localforage from 'localforage'
 import Sparticles from 'sparticles'
 import { onMounted, onUnmounted, ref } from 'vue'
+import Logo from '@/assets/images/Logo.png'
 
 const props = defineProps({
     homeBackground: {
@@ -61,12 +62,25 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div v-if="homeBackground.url" class="home-background w-screen h-screen overflow-hidden">
-    <img :src="imgUrl" class="w-full h-full object-cover" alt="">
+  <div class="home-background w-screen h-screen overflow-hidden">
+    <img v-if="homeBackground.url" :src="imgUrl" class="logo-img" alt="">
+    <img v-else :src="Logo" class="logo-img" alt="">
   </div>
-  <div v-else ref="starRef" class="w-screen h-screen overflow-hidden" />
+  <div ref="starRef" class="w-screen h-screen overflow-hidden absolute top-0 left-0 pointer-events-none" />
 </template>
 
 <style lang='scss' scoped>
+.home-background {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #ff79c6 100%);
+}
 
+.logo-img {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 60px;
+  object-fit: contain;
+}
 </style>

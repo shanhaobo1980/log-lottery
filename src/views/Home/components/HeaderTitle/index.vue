@@ -40,13 +40,7 @@ const { t } = useI18n()
 
 <template>
   <div class="absolute z-10 flex flex-col items-center justify-center -translate-x-1/2 left-1/2">
-    <h2
-      class="pt-12 m-0 mb-12 tracking-wide text-center leading-12"
-      :class="{ 'animate-pulse bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent': !isTextColor }"
-      :style="titleStyle"
-    >
-      {{ topTitle }}
-    </h2>
+    <!-- 标题已移除，使用 Logo 代替 -->
     <div v-if="isInitialDone" class="flex gap-3">
       <button
         v-if="tableData.length <= 0" class="cursor-pointer btn btn-outline btn-secondary btn-lg"

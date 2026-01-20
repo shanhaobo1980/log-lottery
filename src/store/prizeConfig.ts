@@ -30,6 +30,7 @@ export const usePrizeConfig = defineStore('prize', {
                     frequency: 1,
                 } as IPrizeConfig,
             },
+            prizeSnapshot: null as any,
         }
     },
     getters: {
@@ -161,6 +162,18 @@ export const usePrizeConfig = defineStore('prize', {
                     isUsed: false,
                     frequency: 1,
                 } as IPrizeConfig,
+            }
+        },
+
+        // 开启测试模式
+        startTestMode() {
+            this.prizeSnapshot = JSON.parse(JSON.stringify(this.prizeConfig))
+        },
+        // 关闭测试模式
+        endTestMode() {
+            if (this.prizeSnapshot) {
+                this.prizeConfig = JSON.parse(JSON.stringify(this.prizeSnapshot))
+                this.prizeSnapshot = null
             }
         },
     },

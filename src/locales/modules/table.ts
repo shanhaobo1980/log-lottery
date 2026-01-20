@@ -1,6 +1,6 @@
 export const tableEn = {
     //  field block name
-    abilitySetting: 'Ability Setting',
+    functionSetting: 'Function Setting',
     dataSetting: 'Data Setting',
     layoutSetting: 'Layout Setting',
     patternSetting: 'Pattern Setting',
@@ -48,11 +48,12 @@ export const tableEn = {
     globalFont: 'Global Font',
     titleFont: 'Title Font',
     syncGlobalFont: 'Sync Global Font',
+    testMode: 'Test Mode',
 }
 
 export const tableZhCn = {
     //  field block name
-    abilitySetting: '功能设置',
+    functionSetting: '功能设置',
     dataSetting: '数据设置',
     layoutSetting: '布局设置',
     patternSetting: '图案设置',
@@ -100,6 +101,7 @@ export const tableZhCn = {
     globalFont: '全局字体',
     titleFont: '标题字体',
     syncGlobalFont: '同步全局字体',
+    testMode: '测试模式',
 }
 
 export const table = {

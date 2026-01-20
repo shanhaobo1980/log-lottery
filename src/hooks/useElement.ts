@@ -11,8 +11,8 @@ export function useElementStyle(element: any, person: IPersonConfig, index: numb
     else if (mod === 'lucky') {
         element.style.backgroundColor = rgba(cardColor, 0.8)
     }
-    element.style.border = `1px solid ${rgba(cardColor, 0.25)}`
-    element.style.boxShadow = `0 0 12px ${rgba(cardColor, 0.5)}`
+    element.style.border = `1px solid ${rgba(cardColor, 0.5)}`
+    element.style.boxShadow = `0 0 12px ${rgba(cardColor, 0.6)}`
     element.style.width = `${cardSize.width}px`
     element.style.height = `${cardSize.height}px`
     if (mod === 'lucky') {

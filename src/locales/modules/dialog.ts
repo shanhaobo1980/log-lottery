@@ -11,6 +11,8 @@ export const dialogEn = {
     uploadFileTitle: 'Upload File',
     uploadImageTitle: 'Upload Image',
     uploadAudioTitle: 'Upload Audio',
+    testModeEnable: 'You are about to enter Test Mode (Sandbox Mode). In this mode:\n\n1. All lottery operations will only affect memory data\n2. Winners, prize status, and other changes will NOT be saved\n3. Data will be restored to its original state when you exit\n\nAre you sure you want to enable Test Mode?',
+    testModeDisable: 'You are about to exit Test Mode. All changes made during Test Mode will be discarded, and data will be restored to the state before entering Test Mode.\n\nAre you sure you want to exit Test Mode?',
 }
 
 export const dialogZhCn = {
@@ -26,6 +28,8 @@ export const dialogZhCn = {
     uploadFileTitle: '上传文件',
     uploadImageTitle: '上传图片',
     uploadAudioTitle: '上传音频',
+    testModeEnable: '您即将进入测试模式（沙盒模式）。在此模式下：\n\n1. 所有抽奖操作仅影响内存数据\n2. 中奖人员、奖项状态等更改不会保存\n3. 退出时数据将恢复到原始状态\n\n确定要开启测试模式吗？',
+    testModeDisable: '您即将退出测试模式。测试模式期间所做的所有更改都将被丢弃，数据将恢复到进入测试模式前的状态。\n\n确定要退出测试模式吗？',
 }
 
 export const dialog = {

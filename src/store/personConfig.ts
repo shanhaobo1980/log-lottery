@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { computed, ref, toRaw } from 'vue'
 import { IndexDb } from '@/utils/dexie'
 import { defaultPersonList } from './data'
+import { useGlobalConfig } from './globalConfig'
 import { usePrizeConfig } from './prizeConfig'
 
 // 获取IPersonConfig的key组成数组
@@ -16,6 +17,7 @@ export const usePersonConfig = defineStore('person', () => {
         allPersonList: [] as IPersonConfig[],
         alreadyPersonList: [] as IPersonConfig[],
     })
+    const personSnapshot = ref<any>(null)
     personDb.getDataSortedByDateTime('allPersonList', 'createTime').then((data) => {
         personConfig.value.allPersonList = data
     })
@@ -59,7 +61,9 @@ export const usePersonConfig = defineStore('person', () => {
         personList.forEach((item: IPersonConfig) => {
             personConfig.value.allPersonList.push(item)
         })
-        personDb.setAllData('allPersonList', personList)
+        if (!useGlobalConfig().isTestMode) {
+            personDb.setAllData('allPersonList', personList)
+        }
     }
     // 添加数据
     function addOnePerson(person: IPersonConfig[]) {
@@ -72,7 +76,9 @@ export const usePersonConfig = defineStore('person', () => {
         }
         person.forEach((item: IPersonConfig) => {
             personConfig.value.allPersonList.push(item)
-            personDb.setData('allPersonList', item)
+            if (!useGlobalConfig().isTestMode) {
+                personDb.setData('allPersonList', item)
+            }
         })
     }
     // 添加已中奖人员
@@ -94,8 +100,10 @@ export const usePersonConfig = defineStore('person', () => {
                 return item
             })
             personConfig.value.alreadyPersonList.push(person)
-            personDb.updateData('allPersonList', toRaw(person))
-            personDb.setData('alreadyPersonList', toRaw(person))
+            if (!useGlobalConfig().isTestMode) {
+                personDb.updateData('allPersonList', toRaw(person))
+                personDb.setData('alreadyPersonList', toRaw(person))
+            }
         })
     }
     // 从已中奖移动到未中奖
@@ -110,17 +118,19 @@ export const usePersonConfig = defineStore('person', () => {
                 personConfig.value.allPersonList[i].prizeName = []
                 personConfig.value.allPersonList[i].prizeTime = []
                 personConfig.value.allPersonList[i].prizeId = []
-                personDb.updateData('allPersonList', toRaw(personConfig.value.allPersonList[i]))
+                if (!useGlobalConfig().isTestMode) {
+                    personDb.updateData('allPersonList', toRaw(personConfig.value.allPersonList[i]))
+                }
                 break
             }
         }
         const alreadyPersonListRaw = toRaw(personConfig.value.alreadyPersonList)
-        for (let i = 0; i < alreadyPersonListLength; i++) {
-            personConfig.value.alreadyPersonList = alreadyPersonListRaw.filter((item: IPersonConfig) =>
-                item.id !== person.id,
-            )
+        personConfig.value.alreadyPersonList = alreadyPersonListRaw.filter((item: IPersonConfig) =>
+            item.id !== person.id,
+        )
+        if (!useGlobalConfig().isTestMode) {
+            personDb.deleteData('alreadyPersonList', person)
         }
-        personDb.deleteData('alreadyPersonList', person)
     }
     // 删除指定人员
     function deletePerson(person: IPersonConfig) {
@@ -129,24 +139,30 @@ export const usePersonConfig = defineStore('person', () => {
             const alreadyPersonListRaw = toRaw(personConfig.value.alreadyPersonList)
             personConfig.value.allPersonList = allPersonListRaw.filter((item: IPersonConfig) => item.id !== person.id)
             personConfig.value.alreadyPersonList = alreadyPersonListRaw.filter((item: IPersonConfig) => item.id !== person.id)
-            personDb.deleteData('allPersonList', person)
-            personDb.deleteData('alreadyPersonList', person)
+            if (!useGlobalConfig().isTestMode) {
+                personDb.deleteData('allPersonList', person)
+                personDb.deleteData('alreadyPersonList', person)
+            }
         }
     }
     // 删除所有人员
     function deleteAllPerson() {
         personConfig.value.allPersonList = []
         personConfig.value.alreadyPersonList = []
-        personDb.deleteAll('allPersonList')
-        personDb.deleteAll('alreadyPersonList')
+        if (!useGlobalConfig().isTestMode) {
+            personDb.deleteAll('allPersonList')
+            personDb.deleteAll('alreadyPersonList')
+        }
     }
 
     // 删除所有人员
     function resetPerson() {
         personConfig.value.allPersonList = []
         personConfig.value.alreadyPersonList = []
-        personDb.deleteAll('allPersonList')
-        personDb.deleteAll('alreadyPersonList')
+        if (!useGlobalConfig().isTestMode) {
+            personDb.deleteAll('allPersonList')
+            personDb.deleteAll('alreadyPersonList')
+        }
     }
     // 重置已中奖人员
     function resetAlreadyPerson() {
@@ -159,9 +175,11 @@ export const usePersonConfig = defineStore('person', () => {
         })
         personConfig.value.alreadyPersonList = []
         const allPersonListRaw = toRaw(personConfig.value.allPersonList)
-        personDb.deleteAll('allPersonList')
-        personDb.setAllData('allPersonList', allPersonListRaw)
-        personDb.deleteAll('alreadyPersonList')
+        if (!useGlobalConfig().isTestMode) {
+            personDb.deleteAll('allPersonList')
+            personDb.setAllData('allPersonList', allPersonListRaw)
+            personDb.deleteAll('alreadyPersonList')
+        }
     }
     function setDefaultPersonList() {
         personConfig.value.allPersonList = defaultPersonList.map((item: any) => {
@@ -169,8 +187,10 @@ export const usePersonConfig = defineStore('person', () => {
             return item
         })
         personConfig.value.alreadyPersonList = []
-        personDb.setAllData('allPersonList', defaultPersonList)
-        personDb.deleteAll('alreadyPersonList')
+        if (!useGlobalConfig().isTestMode) {
+            personDb.setAllData('allPersonList', defaultPersonList)
+            personDb.deleteAll('alreadyPersonList')
+        }
     }
     // 重置所有配置
     function reset() {
@@ -178,9 +198,29 @@ export const usePersonConfig = defineStore('person', () => {
             allPersonList: [] as IPersonConfig[],
             alreadyPersonList: [] as IPersonConfig[],
         }
-        personDb.deleteAll('allPersonList')
-        personDb.deleteAll('alreadyPersonList')
+        if (!useGlobalConfig().isTestMode) {
+            personDb.deleteAll('allPersonList')
+            personDb.deleteAll('alreadyPersonList')
+        }
     }
+
+    // 开启测试模式
+    function startTestMode() {
+        personSnapshot.value = {
+            allPersonList: JSON.parse(JSON.stringify(personConfig.value.allPersonList)),
+            alreadyPersonList: JSON.parse(JSON.stringify(personConfig.value.alreadyPersonList)),
+        }
+    }
+
+    // 关闭测试模式
+    function endTestMode() {
+        if (personSnapshot.value) {
+            personConfig.value.allPersonList = personSnapshot.value.allPersonList
+            personConfig.value.alreadyPersonList = personSnapshot.value.alreadyPersonList
+            personSnapshot.value = null
+        }
+    }
+
     return {
         personConfig,
         getPersonConfig,
@@ -199,5 +239,7 @@ export const usePersonConfig = defineStore('person', () => {
         resetAlreadyPerson,
         setDefaultPersonList,
         reset,
+        startTestMode,
+        endTestMode,
     }
 })

@@ -16,6 +16,7 @@ export const tooltipEn = {
     timedStop: 'After the lottery begins, it will stop at a scheduled time by default, set to 0, with the unit in seconds. A value of 0 disables the scheduled stopping function',
     uploadImage: 'Upload Image',
     pleaseGoto: 'Please go to',
+    testMode: 'Enable sandbox mode. All lottery operations will not affect actual data. Data will be restored when exiting test mode.',
 }
 
 export const tooltipZhCn = {
@@ -36,6 +37,7 @@ export const tooltipZhCn = {
     timedStop: '开始抽奖过后定时停止，默认为0，单位为秒，0为关闭定时停止功能',
     uploadImage: '上传图片',
     pleaseGoto: '请先前往',
+    testMode: '开启沙盒模式，所有抽奖操作不会影响实际数据。退出测试模式时数据将恢复到开启前的状态。',
 }
 
 export const tooltip = {
