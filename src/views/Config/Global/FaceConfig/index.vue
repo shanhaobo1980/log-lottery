@@ -38,6 +38,7 @@ const {
     importAllConfigData,
     definiteTimeValue,
     isWinMusicValue,
+    isTestModeValue,
 } = useViewModel()
 </script>
 
